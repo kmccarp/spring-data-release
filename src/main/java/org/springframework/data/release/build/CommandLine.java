@@ -97,7 +97,7 @@ class CommandLine {
 
 		Assert.notNull(argument, "Argument must not be null!");
 
-		List<Argument> newArguments = new ArrayList<Argument>(arguments.size() + 1);
+		List<Argument> newArguments = new ArrayList<>(arguments.size() + 1);
 		newArguments.addAll(arguments);
 		newArguments.add(argument);
 
@@ -114,7 +114,7 @@ class CommandLine {
 	public List<String> toCommandLine(Function<Goal, String> goalExpansion) {
 
 		Stream<String> goalStream = goals.stream().map(goalExpansion);
-		Stream<String> argumentStream = arguments.stream().map(it -> it.toCommandLineArgument());
+		Stream<String> argumentStream = arguments.stream().map(CommandLine.Argument::toCommandLineArgument);
 
 		return Stream.concat(goalStream, argumentStream).collect(Collectors.toList());
 	}
@@ -151,7 +151,7 @@ class CommandLine {
 
 	@Value
 	@RequiredArgsConstructor(access = AccessLevel.PRIVATE)
-	public static class Argument {
+	public static final class Argument {
 
 		public static Argument SKIP_TESTS = Argument.arg("skipTests");
 
@@ -257,7 +257,7 @@ class CommandLine {
 			 * @return
 			 */
 			public String toCommandLine() {
-				return preparer.map(it -> it.apply(value)).orElseGet(() -> value.toString());
+				return preparer.map(it -> it.apply(value)).orElseGet(value::toString);
 			}
 
 			/*
@@ -265,7 +265,7 @@ class CommandLine {
 			 * @see java.lang.Object#toString()
 			 */
 			public String toString() {
-				return toString.map(it -> it.apply(value)).orElseGet(() -> toCommandLine());
+				return toString.map(it -> it.apply(value)).orElseGet(this::toCommandLine);
 			}
 		}
 	}

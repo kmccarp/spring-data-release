@@ -58,8 +58,8 @@ class DummyProjectClient implements ProjectService {
 
 		try {
 			System.out.println(mapper.writeValueAsString(payload));
-		} catch (JsonProcessingException o_O) {
-			throw new RuntimeException(o_O);
+		} catch (JsonProcessingException oO) {
+			throw new RuntimeException(oO);
 		}
 	}
 

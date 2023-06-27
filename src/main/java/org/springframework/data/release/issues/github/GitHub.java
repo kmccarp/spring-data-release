@@ -160,7 +160,7 @@ public class GitHub extends GitHubSupport implements IssueTracker {
 	public Changelog getChangelogFor(ModuleIteration moduleIteration) {
 
 		Tickets tickets = getIssuesFor(moduleIteration, false, false).//
-				map(issue -> toTicket(issue)).//
+				map(GitHub::toTicket).//
 				collect(Tickets.toTicketsCollector());
 
 		logger.log(moduleIteration, "Created changelog with %s entries.", tickets.getOverallTotal());
@@ -195,12 +195,10 @@ public class GitHub extends GitHubSupport implements IssueTracker {
 			logger.log(trainIteration, "Retrieving tickets…");
 		}
 
-		Tickets tickets = trainIteration.stream(). //
+		return trainIteration.stream(). //
 				filter(moduleIteration -> supports(moduleIteration.getProject())). //
 				flatMap(moduleIteration -> getTicketsFor(moduleIteration, forCurrentUser).stream()). //
 				collect(Tickets.toTicketsCollector());
-
-		return tickets;
 	}
 
 	/*
@@ -227,7 +225,7 @@ public class GitHub extends GitHubSupport implements IssueTracker {
 		parameters.put("repoName", repositoryName);
 
 		operations.exchange(MILESTONES_URI_TEMPLATE, HttpMethod.POST,
-				new HttpEntity<Object>(githubMilestone.toMilestone(), httpHeaders), Milestone.class, parameters);
+				new HttpEntity<>(githubMilestone.toMilestone(), httpHeaders), Milestone.class, parameters);
 	}
 
 	/*
@@ -380,8 +378,7 @@ public class GitHub extends GitHubSupport implements IssueTracker {
 
 	private Map<String, Object> newUrlTemplateVariables() {
 
-		Map<String, Object> parameters = new HashMap<>();
-		return parameters;
+		return new HashMap<>();
 	}
 
 	private Optional<Milestone> findMilestone(ModuleIteration moduleIteration, String repositoryName) {
@@ -460,7 +457,7 @@ public class GitHub extends GitHubSupport implements IssueTracker {
 					parameters.put("id", milestone.getNumber());
 
 					operations.exchange(MILESTONE_BY_ID_URI_TEMPLATE, HttpMethod.PATCH,
-							new HttpEntity<Object>(milestone, httpHeaders), Map.class, parameters);
+							new HttpEntity<>(milestone, httpHeaders), Map.class, parameters);
 				});
 
 		// - if no next version exists, create

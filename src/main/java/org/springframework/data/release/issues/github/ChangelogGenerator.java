@@ -122,7 +122,7 @@ public class ChangelogGenerator {
 		if (this.excludeContributors.contains("*")) {
 			return Collections.emptySet();
 		}
-		return issues.stream().filter((issue) -> issue.getPullRequest() != null).map(GitHubReadIssue::getUser)
+		return issues.stream().filter(issue -> issue.getPullRequest() != null).map(GitHubReadIssue::getUser)
 				.filter(this::isIncludedContributor).collect(Collectors.toSet());
 	}
 

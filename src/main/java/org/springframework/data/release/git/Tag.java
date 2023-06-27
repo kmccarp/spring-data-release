@@ -68,7 +68,7 @@ public class Tag implements Comparable<Tag> {
 
 		try {
 			return Optional.of(getRequiredArtifactVersion());
-		} catch (IllegalArgumentException o_O) {
+		} catch (IllegalArgumentException oO) {
 			return Optional.empty();
 		}
 	}
@@ -105,7 +105,7 @@ public class Tag implements Comparable<Tag> {
 
 		// Prefer artifact versions but fall back to name comparison
 
-		return toArtifactVersion().map(left -> that.toArtifactVersion().map(right -> left.compareTo(right)).//
+		return toArtifactVersion().map(left -> that.toArtifactVersion().map(left::compareTo).//
 				orElse(name.compareTo(that.name))).orElse(name.compareTo(that.name));
 	}
 }

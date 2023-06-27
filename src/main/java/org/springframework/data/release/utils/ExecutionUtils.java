@@ -56,9 +56,9 @@ public class ExecutionUtils {
 				map(it -> CompletableFuture.runAsync(() -> {
 					try {
 						consumer.accept(it);
-					} catch (Exception o_O) {
-						log.error(o_O.getMessage(), o_O);
-						throw new RuntimeException(o_O);
+					} catch (Exception oO) {
+						log.error(oO.getMessage(), oO);
+						throw new RuntimeException(oO);
 					}
 				}, executor)).collect(Collectors.toList()).forEach(CompletableFuture::join);
 	}

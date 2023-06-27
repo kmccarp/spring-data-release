@@ -194,8 +194,8 @@ public class Workspace {
 
 		try {
 			return Arrays.stream(resolver.getResources(patternToLookup)).map(wrap(Resource::getFile));
-		} catch (IOException o_O) {
-			throw new RuntimeException(o_O);
+		} catch (IOException oO) {
+			throw new RuntimeException(oO);
 		}
 	}
 

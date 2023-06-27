@@ -61,8 +61,8 @@ class ArtifactoryClient {
 		try {
 			template.postForEntity(uri,
 					new PromotionRequest(information.getTargetRepository(), properties.getStagingRepository()), String.class);
-		} catch (HttpClientErrorException o_O) {
-			handle(message -> logger.warn(information.getModule(), message), "Promotion failed!", o_O);
+		} catch (HttpClientErrorException oO) {
+			handle(message -> logger.warn(information.getModule(), message), "Promotion failed!", oO);
 		}
 	}
 
@@ -106,6 +106,7 @@ class ArtifactoryClient {
 
 	@Value
 	static class PromotionRequest {
-		String targetRepo, sourceRepo;
+		String targetRepo;
+		String sourceRepo;
 	}
 }

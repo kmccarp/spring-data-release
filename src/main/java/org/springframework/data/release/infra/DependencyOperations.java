@@ -527,15 +527,15 @@ public class DependencyOperations {
 
 			}).collect(Collectors.toList());
 
-		} catch (Exception o_O) {
+		} catch (Exception oO) {
 
-			if (o_O instanceof HttpClientErrorException) {
-				if (((HttpClientErrorException) o_O).getStatusCode() == HttpStatus.NOT_FOUND) {
+			if (oO instanceof HttpClientErrorException) {
+				if (((HttpClientErrorException) oO).getStatusCode() == HttpStatus.NOT_FOUND) {
 					return Collections.emptyList();
 				}
 			}
 
-			throw new RuntimeException(String.format("Cannot determine available versions for %s", dependency), o_O);
+			throw new RuntimeException(String.format("Cannot determine available versions for %s", dependency), oO);
 		}
 	}
 
