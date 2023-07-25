@@ -85,7 +85,7 @@ import org.springframework.util.Assert;
 public class GitOperations {
 
 	private enum BranchCheckoutMode {
-		CREATE_ONLY, CREATE_AND_UPDATE;
+		CREATE_ONLY, CREATE_AND_UPDATE
 	}
 
 	GitServer server = new GitServer();
@@ -363,8 +363,7 @@ public class GitOperations {
 
 	public VersionTags getTags(Project project) {
 
-		return doWithGit(project, git -> {
-			return new VersionTags(project, git.tagList().call().stream()//
+		return doWithGit(project, git -> new VersionTags(project, git.tagList().call().stream()//
 					.map(ref -> {
 
 						RevCommit commit = getCommit(git.getRepository(), ref);
@@ -376,8 +375,7 @@ public class GitOperations {
 
 						return Tag.of(ref.getName(), localDate);
 					})//
-					.collect(Collectors.toList()));
-		});
+					.collect(Collectors.toList())));
 	}
 
 	private RevCommit getCommit(Repository repository, Ref ref) {
@@ -1098,7 +1096,7 @@ public class GitOperations {
 	/**
 	 * {@link CredentialsProvider} for GPG Keys used with JGit Commit Signing.
 	 */
-	private static class GpgPassphraseProvider extends CredentialsProvider {
+	private static final class GpgPassphraseProvider extends CredentialsProvider {
 
 		private final Gpg gpg;
 

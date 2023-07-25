@@ -83,7 +83,7 @@ class GitHubSupport {
 
 				Matcher matcher = pattern.matcher(link);
 				if (matcher.find()) {
-					if (matcher.group(2).equals("next")) {
+					if ("next".equals(matcher.group(2))) {
 						nextLink = matcher.group(1);
 						break;
 					}

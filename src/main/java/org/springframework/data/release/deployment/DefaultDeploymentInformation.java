@@ -36,7 +36,7 @@ import org.springframework.web.util.UriTemplate;
 @RequiredArgsConstructor(access = AccessLevel.PACKAGE)
 public class DefaultDeploymentInformation implements DeploymentInformation {
 
-	private static UriTemplate REPOSITORY_TEMPLATE = new UriTemplate(
+	private static UriTemplate repositoryTemplate = new UriTemplate(
 			"artifactory::default::{server};build.number={buildNumber};build.name={buildName}");
 
 	private final @Getter @NonNull ModuleIteration module;
@@ -94,7 +94,7 @@ public class DefaultDeploymentInformation implements DeploymentInformation {
 		parameters.put("server", properties.getStagingRepositoryUrl());
 		parameters.putAll(getBuildInfoParameters());
 
-		return REPOSITORY_TEMPLATE.expand(parameters).toString();
+		return repositoryTemplate.expand(parameters).toString();
 	}
 
 	/*

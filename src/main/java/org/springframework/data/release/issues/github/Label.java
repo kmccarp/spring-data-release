@@ -42,11 +42,6 @@ public class Label {
 		if (!other.getDescription().equals(getDescription())) {
 			return true;
 		}
-
-		if (!other.getColor().equals(getColor())) {
-			return true;
-		}
-
-		return false;
+		return !other.getColor().equals(getColor());
 	}
 }

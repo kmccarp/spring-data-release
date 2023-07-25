@@ -31,7 +31,8 @@ import org.springframework.util.Assert;
 @Value
 public class Ticket {
 
-	String id, summary;
+	String id;
+	String summary;
 	String url;
 	String assignee;
 	TicketStatus ticketStatus;
