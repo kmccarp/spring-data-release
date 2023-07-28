@@ -60,7 +60,7 @@ class ChangelogSections {
 		for (GitHubReadIssue issue : issues) {
 			List<ChangelogSection> sections = getSections(issue);
 			for (ChangelogSection section : sections) {
-				collated.computeIfAbsent(section, (key) -> new ArrayList<>());
+				collated.computeIfAbsent(section, key -> new ArrayList<>());
 				collated.get(section).add(issue);
 			}
 		}

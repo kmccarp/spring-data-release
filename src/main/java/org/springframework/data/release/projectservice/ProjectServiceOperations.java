@@ -111,12 +111,8 @@ class ProjectServiceOperations {
 
 		Assert.notNull(trains, "Trains must not be null!");
 
-		Map<Project, MaintainedVersions> versions = ExecutionUtils.runAndReturn(executor, Streamable.of(trains), train -> {
-			return ExecutionUtils.runAndReturn(executor,
-					Streamable.of(() -> train.stream().filter(module -> !TO_FILTER.contains(module.getProject()))), module -> {
-						return getLatestVersion(module, train);
-					});
-		}).stream().flatMap(Collection::stream).flatMap(Collection::stream).collect(
+		Map<Project, MaintainedVersions> versions = ExecutionUtils.runAndReturn(executor, Streamable.of(trains), train -> ExecutionUtils.runAndReturn(executor,
+					Streamable.of(() -> train.stream().filter(module -> !TO_FILTER.contains(module.getProject()))), module -> getLatestVersion(module, train))).stream().flatMap(Collection::stream).flatMap(Collection::stream).collect(
 				Collectors.groupingBy(MaintainedVersion::getProject, ListWrapperCollector.collectInto(MaintainedVersions::of)));
 
 		// Migration because of the R2DBC merge into Spring Data Relational and project rename to Relational

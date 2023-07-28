@@ -53,6 +53,6 @@ public class TicketReference implements Comparable<TicketReference> {
 	}
 
 	public enum Style {
-		GitHub, Jira;
+		GitHub, Jira
 	}
 }

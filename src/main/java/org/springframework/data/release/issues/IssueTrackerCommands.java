@@ -169,9 +169,7 @@ public class IssueTrackerCommands extends TimedCommand {
 		}
 
 		return ExecutionUtils.runAndReturn(executor, iteration,
-				moduleIteration -> {
-					return getTicketsForProject(iteration, moduleIteration.getModule().getProject(), ticketPredicate);
-				})
+				moduleIteration -> getTicketsForProject(iteration, moduleIteration.getModule().getProject(), ticketPredicate))
 				.stream() //
 				.filter(StringUtils::hasText) //
 				.collect(Collectors.joining("\n"));

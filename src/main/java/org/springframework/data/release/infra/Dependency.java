@@ -28,7 +28,8 @@ import org.springframework.util.Assert;
 public class Dependency implements Comparable<Dependency> {
 
 	String name;
-	String groupId, artifactId;
+	String groupId;
+	String artifactId;
 	Predicate<String> exclusions;
 
 	public static Dependency of(String name, String ga) {

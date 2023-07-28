@@ -20,5 +20,5 @@ package org.springframework.data.release.model;
  */
 public enum Transition {
 
-	MAJOR, MINOR;
+	MAJOR, MINOR
 }
