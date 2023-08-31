@@ -18,9 +18,9 @@ import org.springframework.util.StopWatch;
 
 public class BootShim {
 
-	private static StopWatch sw = new StopWatch("Spring Shell");
+	private static final StopWatch sw = new StopWatch("Spring Shell");
 	private static CommandLine commandLine;
-	private ConfigurableApplicationContext ctx;
+	private final ConfigurableApplicationContext ctx;
 
 	public BootShim(String[] args, ConfigurableApplicationContext context) {
 		this.ctx = context;

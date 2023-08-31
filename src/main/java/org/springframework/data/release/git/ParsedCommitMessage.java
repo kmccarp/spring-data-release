@@ -39,7 +39,7 @@ import org.springframework.lang.Nullable;
  */
 @Getter
 @ToString
-class ParsedCommitMessage {
+final class ParsedCommitMessage {
 
 	private static final Pattern JIRA_TICKET = Pattern.compile("(?>\\[)?([A-Z]+[ ]?-[ ]?\\d+)(?>\\])?");
 	private static final Pattern GITHUB_TICKET = Pattern.compile("((?>#|gh-)\\d+)");
@@ -197,7 +197,7 @@ class ParsedCommitMessage {
 
 			if (relatedTicketsMatcher.find()) {
 
-				String ticketIds[] = relatedTicketsMatcher.group(1).split(",");
+				String[] ticketIds = relatedTicketsMatcher.group(1).split(",");
 
 				for (String ticketId : ticketIds) {
 					extractTicket(ticketId).ifPresent(relatedTickets::add);

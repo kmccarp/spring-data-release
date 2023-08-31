@@ -66,7 +66,7 @@ class CustomShellComponent extends JLineShellComponent {
 				Assert.isTrue(isReadyForCommands(), "SimpleExecutionStrategy not yet ready for commands");
 				Object target = parseResult.getInstance();
 				if (target instanceof ExecutionProcessor) {
-					ExecutionProcessor processor = ((ExecutionProcessor) target);
+					ExecutionProcessor processor = (ExecutionProcessor) target;
 					parseResult = processor.beforeInvocation(parseResult);
 					try {
 						Object result = invoke(parseResult);

@@ -27,9 +27,9 @@ import java.util.Locale;
 @Value(staticConstructor = "of")
 public class DocumentationMetadata {
 
-	private static String DOCS_BASE = "https://docs.spring.io/spring-data/%s/docs/%s";
-	private static String DOCS = DOCS_BASE.concat("/reference/html/");
-	private static String JAVADOC = DOCS_BASE.concat("/api/");
+	private static String docsBase = "https://docs.spring.io/spring-data/%s/docs/%s";
+	private static String docs = docsBase.concat("/reference/html/");
+	private static String javadoc = docsBase.concat("/api/");
 
 	Project project;
 	ArtifactVersion version;
@@ -47,10 +47,10 @@ public class DocumentationMetadata {
 		}
 
 		if (Projects.BUILD.equals(project)) { // Report Commons Docs for Spring Data Build
-			return String.format(JAVADOC, getProjectName(Projects.COMMONS), getDocumentationVersion());
+			return String.format(javadoc, getProjectName(Projects.COMMONS), getDocumentationVersion());
 		}
 
-		return String.format(JAVADOC, getProjectName(project), getDocumentationVersion());
+		return String.format(javadoc, getProjectName(project), getDocumentationVersion());
 	}
 
 	private String getProjectName(Project project) {
@@ -74,10 +74,10 @@ public class DocumentationMetadata {
 		}
 
 		if (Projects.BUILD.equals(project)) { // Report Commons Docs for Spring Data Build
-			return String.format(DOCS, getProjectName(Projects.COMMONS), getDocumentationVersion());
+			return String.format(docs, getProjectName(Projects.COMMONS), getDocumentationVersion());
 		}
 
-		return String.format(DOCS, getProjectName(project), getDocumentationVersion());
+		return String.format(docs, getProjectName(project), getDocumentationVersion());
 	}
 
 	public String getVersionOrTrainName(Train train) {
