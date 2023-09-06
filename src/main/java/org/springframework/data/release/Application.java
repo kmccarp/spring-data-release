@@ -39,8 +39,6 @@ public class Application {
 			BootShim bs = new BootShim(args, context);
 			exitShellRequest = bs.run();
 
-		} catch (RuntimeException e) {
-			throw e;
 		} finally {
 			HandlerUtils.flushAllHandlers(Logger.getLogger(""));
 		}

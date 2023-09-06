@@ -20,5 +20,5 @@ package org.springframework.data.release.model;
  */
 public enum Phase {
 
-	PREPARE, CLEANUP, MAINTENANCE;
+	PREPARE, CLEANUP, MAINTENANCE
 }

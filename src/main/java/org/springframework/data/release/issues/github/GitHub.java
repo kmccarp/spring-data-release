@@ -160,7 +160,7 @@ public class GitHub extends GitHubSupport implements IssueTracker {
 	public Changelog getChangelogFor(ModuleIteration moduleIteration) {
 
 		Tickets tickets = getIssuesFor(moduleIteration, false, false).//
-				map(issue -> toTicket(issue)).//
+				map(GitHub::toTicket).//
 				collect(Tickets.toTicketsCollector());
 
 		logger.log(moduleIteration, "Created changelog with %s entries.", tickets.getOverallTotal());
@@ -195,12 +195,10 @@ public class GitHub extends GitHubSupport implements IssueTracker {
 			logger.log(trainIteration, "Retrieving tickets…");
 		}
 
-		Tickets tickets = trainIteration.stream(). //
+		return trainIteration.stream(). //
 				filter(moduleIteration -> supports(moduleIteration.getProject())). //
 				flatMap(moduleIteration -> getTicketsFor(moduleIteration, forCurrentUser).stream()). //
 				collect(Tickets.toTicketsCollector());
-
-		return tickets;
 	}
 
 	/*
@@ -380,8 +378,7 @@ public class GitHub extends GitHubSupport implements IssueTracker {
 
 	private Map<String, Object> newUrlTemplateVariables() {
 
-		Map<String, Object> parameters = new HashMap<>();
-		return parameters;
+		return new HashMap<>();
 	}
 
 	private Optional<Milestone> findMilestone(ModuleIteration moduleIteration, String repositoryName) {

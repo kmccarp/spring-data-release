@@ -128,7 +128,7 @@ public class JavaRuntimes {
 	/**
 	 * Selector to determine a {@link JdkInstallation}.
 	 */
-	public static class Selector {
+	public static final class Selector {
 
 		private String notFoundMessage;
 
@@ -355,11 +355,11 @@ public class JavaRuntimes {
 
 	static String normalizeImplementor(String implementor) {
 
-		if (implementor.equals("Eclipse Adoptium")) {
+		if ("Eclipse Adoptium".equals(implementor)) {
 			return "Eclipse Temurin";
 		}
 
-		if (implementor.equals("Eclipse Foundation")) {
+		if ("Eclipse Foundation".equals(implementor)) {
 			return "Eclipse Temurin";
 		}
 

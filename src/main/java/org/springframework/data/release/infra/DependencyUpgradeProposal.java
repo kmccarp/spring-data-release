@@ -28,7 +28,10 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 class DependencyUpgradeProposal {
 
-	DependencyVersion current, latest, latestMinor, proposal;
+	DependencyVersion current;
+	DependencyVersion latest;
+	DependencyVersion latestMinor;
+	DependencyVersion proposal;
 	List<DependencyVersion> newerVersions;
 
 	public static DependencyUpgradeProposal of(DependencyUpgradePolicy policy, DependencyVersion currentVersion,
