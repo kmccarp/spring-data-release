@@ -44,7 +44,7 @@ class DeploymentInformationIntegrationTests extends AbstractIntegrationTests {
 
 		DeploymentInformation information = new DefaultDeploymentInformation(buildModule, properties);
 
-		assertThat(information.getDeploymentTargetUrl()).contains(properties.getServer().getUri().toString());
+		assertThat(information.getDeploymentTargetUrl()).contains(properties.getServer().getUri());
 		assertThat(information.getBuildName()).isEqualTo("Spring Data Build - Release");
 		assertThat(information.getTargetRepository()).isEqualTo("test-libs-milestone-local");
 	}

@@ -32,7 +32,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Value
 class GitHubReadIssue implements Comparable<GitHubReadIssue>, GitHubIssue {
 
-	String number, title, state, url;
+	String number;
+	String title;
+	String state;
+	String url;
 	GitHubUser user;
 	List<GitHubUser> assignees;
 	Milestone milestone;

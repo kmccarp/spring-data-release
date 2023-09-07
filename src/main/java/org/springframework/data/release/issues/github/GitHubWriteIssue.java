@@ -37,7 +37,9 @@ import org.springframework.util.Assert;
 @With
 class GitHubWriteIssue implements GitHubIssue {
 
-	String number, title, state;
+	String number;
+	String title;
+	String state;
 	List<Object> assignees;
 	Long milestone;
 	List<String> labels;

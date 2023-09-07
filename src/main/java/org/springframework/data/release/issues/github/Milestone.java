@@ -29,7 +29,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 class Milestone {
 
 	Long number;
-	String title, description, state;
+	String title;
+	String description;
+	String state;
 
 	public static Milestone of(String title, String description) {
 		return new Milestone(null, title, description, null);

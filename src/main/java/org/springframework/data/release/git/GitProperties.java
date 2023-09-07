@@ -42,7 +42,9 @@ import org.springframework.util.Assert;
 public class GitProperties {
 
 	private @Getter(AccessLevel.PRIVATE) Password password;
-	private String username, author, email;
+	private String username;
+	private String author;
+	private String email;
 
 	private Gpg gpg;
 
