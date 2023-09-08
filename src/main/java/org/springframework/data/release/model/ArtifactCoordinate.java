@@ -23,7 +23,8 @@ import lombok.Value;
 @Value(staticConstructor = "of")
 public class ArtifactCoordinate {
 
-	String groupId, artifactId;
+	String groupId;
+	String artifactId;
 
 	public static ArtifactCoordinate from(String coordinate) {
 
