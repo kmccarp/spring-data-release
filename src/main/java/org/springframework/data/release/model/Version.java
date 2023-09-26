@@ -14,7 +14,7 @@ import org.springframework.util.StringUtils;
  *
  * @author Oliver Gierke
  */
-public class Version implements Comparable<Version> {
+public final class Version implements Comparable<Version> {
 
 	private final BigDecimal major;
 	private final BigDecimal minor;

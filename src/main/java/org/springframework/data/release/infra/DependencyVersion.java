@@ -38,9 +38,9 @@ import org.springframework.data.release.model.Version;
 class DependencyVersion implements Comparable<DependencyVersion> {
 
 	private static Pattern VERSION = Pattern.compile("((?>(?>\\d+)[\\.]?)+)((?>-)?[a-zA-Z]+)?(\\d+)?");
-	private static Pattern NAME_VERSION = Pattern.compile("([A-Za-z]+)-(RELEASE|SR(\\d+)|SNAPSHOT|BUILD-SNAPSHOT)");
+	private static Pattern nameVersion = Pattern.compile("([A-Za-z]+)-(RELEASE|SR(\\d+)|SNAPSHOT|BUILD-SNAPSHOT)");
 
-	private static Comparator<DependencyVersion> VERSION_COMPARATOR = Comparator.comparing(DependencyVersion::getVersion)
+	private static Comparator<DependencyVersion> versionComparator = Comparator.comparing(DependencyVersion::getVersion)
 			.thenComparing((o1, o2) -> {
 
 				// no modifier means release so it's higher order
@@ -56,7 +56,7 @@ class DependencyVersion implements Comparable<DependencyVersion> {
 			}).thenComparing(DependencyVersion::getModifier).thenComparing(DependencyVersion::getCounter)
 			.thenComparing(DependencyVersion::getIdentifier);
 
-	private static Comparator<DependencyVersion> TRAIN_VERSION_COMPARATOR = Comparator
+	private static Comparator<DependencyVersion> trainVersionComparator = Comparator
 			.comparing(DependencyVersion::getTrainName).thenComparing(DependencyVersion::getVersion);
 
 	String identifier;
@@ -68,7 +68,7 @@ class DependencyVersion implements Comparable<DependencyVersion> {
 
 	public static DependencyVersion of(String identifier) {
 
-		Matcher bomMatcher = NAME_VERSION.matcher(identifier);
+		Matcher bomMatcher = nameVersion.matcher(identifier);
 
 		if (bomMatcher.find()) {
 
@@ -119,7 +119,7 @@ class DependencyVersion implements Comparable<DependencyVersion> {
 	public int compareTo(DependencyVersion o) {
 
 		if (trainName != null && o.trainName != null) {
-			return TRAIN_VERSION_COMPARATOR.compare(this, o);
+			return trainVersionComparator.compare(this, o);
 		}
 
 		if (trainName != null) {
@@ -131,7 +131,7 @@ class DependencyVersion implements Comparable<DependencyVersion> {
 		}
 
 		if (version != null && o.version != null) {
-			return VERSION_COMPARATOR.compare(this, o);
+			return versionComparator.compare(this, o);
 		}
 
 		return identifier.compareTo(o.identifier);
