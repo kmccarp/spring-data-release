@@ -29,11 +29,11 @@ import org.springframework.data.release.model.Train.DocumentationFormat;
 @Value(staticConstructor = "of")
 public class DocumentationMetadata {
 
-	private static String DOCS_BASE = "https://docs.spring.io/spring-data/%s/docs/%s";
+	private static String docsBase = "https://docs.spring.io/spring-data/%s/docs/%s";
 
-	private static String ANTORA_BASE = "https://docs.spring.io/spring-data/%s/reference/";
-	private static String DOCS = DOCS_BASE.concat("/reference/html/");
-	private static String JAVADOC = DOCS_BASE.concat("/api/");
+	private static String antoraBase = "https://docs.spring.io/spring-data/%s/reference/";
+	private static String docs = docsBase.concat("/reference/html/");
+	private static String javadoc = docsBase.concat("/api/");
 
 	DocumentationFormat documentationFormat;
 	Project project;
@@ -56,10 +56,10 @@ public class DocumentationMetadata {
 		}
 
 		if (Projects.BUILD.equals(project)) { // Report Commons Docs for Spring Data Build
-			return String.format(JAVADOC, getProjectName(Projects.COMMONS), getDocumentationVersion());
+			return String.format(javadoc, getProjectName(Projects.COMMONS), getDocumentationVersion());
 		}
 
-		return String.format(JAVADOC, getProjectName(project), getDocumentationVersion());
+		return String.format(javadoc, getProjectName(project), getDocumentationVersion());
 	}
 
 	private String getProjectName(Project project) {
@@ -100,10 +100,10 @@ public class DocumentationMetadata {
 				project = Projects.COMMONS;
 			}
 
-			return String.format(DOCS, getProjectName(project), getDocumentationVersion());
+			return String.format(docs, getProjectName(project), getDocumentationVersion());
 		}
 
-		return String.format(ANTORA_BASE, getProjectName(project));
+		return String.format(antoraBase, getProjectName(project));
 	}
 
 	public String getVersionOrTrainName(Train train) {

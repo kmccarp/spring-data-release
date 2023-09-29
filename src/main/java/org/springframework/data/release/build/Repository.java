@@ -27,7 +27,8 @@ public class Repository {
 	static Repository SNAPSHOT = new Repository("spring-snapshot", "https://repo.spring.io/snapshot", true, false);
 	static Repository MILESTONE = new Repository("spring-milestone", "https://repo.spring.io/milestone", null, null);
 
-	String id, url;
+    String id;
+    String url;
 	Boolean snapshots;
 	Boolean releases;
 
