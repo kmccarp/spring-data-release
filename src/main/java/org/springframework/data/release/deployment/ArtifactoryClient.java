@@ -84,19 +84,19 @@ class ArtifactoryClient {
 		}
 	}
 
-	private void handle(Consumer<Object> logger, String message, HttpClientErrorException o_O) {
+	private void handle(Consumer<Object> logger, String message, HttpClientErrorException oO) {
 
 		try {
 
 			logger.accept(message);
 
-			Errors errors = new ObjectMapper().readValue(o_O.getResponseBodyAsByteArray(), Errors.class);
+			Errors errors = new ObjectMapper().readValue(oO.getResponseBodyAsByteArray(), Errors.class);
 			errors.getErrors().forEach(logger);
 			errors.getMessages().forEach(logger);
 
 		} catch (IOException e) {
-			o_O.addSuppressed(e);
-			throw new RuntimeException(o_O.getResponseBodyAsString(), o_O);
+			oO.addSuppressed(e);
+			throw new RuntimeException(oO.getResponseBodyAsString(), oO);
 		}
 	}
 
@@ -106,6 +106,7 @@ class ArtifactoryClient {
 
 	@Value
 	static class PromotionRequest {
-		String targetRepo, sourceRepo;
+        String targetRepo;
+        String sourceRepo;
 	}
 }

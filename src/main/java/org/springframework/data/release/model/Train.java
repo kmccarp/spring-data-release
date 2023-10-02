@@ -322,6 +322,6 @@ public class Train implements Streamable<Module> {
 	}
 
 	public enum DocumentationFormat {
-		ASCIIDOC, ANTORA;
+		ASCIIDOC, ANTORA
 	}
 }

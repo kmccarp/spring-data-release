@@ -171,11 +171,11 @@ public class DocumentationCommands extends TimedCommand {
 					HttpStatus status = checkedLink.getResult();
 					if (status.is2xxSuccessful()) {
 						ansi.fg(Color.GREEN);
-					} else if (status.is4xxClientError())
-						ansi.fg(Color.RED);
-					else if (status.is3xxRedirection()) {
-						ansi.fg(Color.YELLOW);
-					}
+					} else if (status.is4xxClientError()) {
+                        ansi.fg(Color.RED);
+                    } else if (status.is3xxRedirection()) {
+                        ansi.fg(Color.YELLOW);
+                    }
 
 					String renderedStatus = ansi.a(checkedLink.getResult().value()).fg(Color.DEFAULT).toString();
 

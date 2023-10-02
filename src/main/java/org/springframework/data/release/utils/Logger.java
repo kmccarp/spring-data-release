@@ -31,7 +31,7 @@ public class Logger {
 
 	private static final String PREFIX_TEMPLATE = "%-14s > %s";
 
-	private final java.util.logging.Logger LOGGER = HandlerUtils.getLogger(getClass());
+	private static final java.util.logging.Logger LOGGER = HandlerUtils.getLogger(getClass());
 
 	public void log(ModuleIteration module, Object template, Object... args) {
 		log(module.getProject(), template, args);

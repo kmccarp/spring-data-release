@@ -96,7 +96,7 @@ class DefaultProjectClient implements ProjectService {
 		boolean requiresDelete = requiresDeleteVersions(project, versionsToRetain, versionsInSagan);
 		boolean requiresWrite = requiresWriteVersions(versions, versionsInSagan);
 
-		if ((requiresDelete) && delete || (requiresWrite && update)) {
+		if (requiresDelete && delete || (requiresWrite && update)) {
 			logger.log(project, "Updating project versions at %s…", resource);
 		}
 
