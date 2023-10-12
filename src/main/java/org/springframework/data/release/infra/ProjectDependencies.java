@@ -31,7 +31,7 @@ import org.springframework.util.MultiValueMap;
  *
  * @author Mark Paluch
  */
-public class ProjectDependencies implements Streamable<ProjectDependencies.ProjectDependency> {
+public final class ProjectDependencies implements Streamable<ProjectDependencies.ProjectDependency> {
 
 	private static final MultiValueMap<Project, ProjectDependency> config = new LinkedMultiValueMap<>();
 

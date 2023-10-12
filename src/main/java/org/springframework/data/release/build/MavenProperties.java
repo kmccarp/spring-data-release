@@ -43,7 +43,7 @@ public class MavenProperties {
 	private File localRepository;
 	private Map<String, String> plugins;
 	private boolean consoleLogger = true;
-	private boolean parallelize = false;
+	private boolean parallelize;
 
 	public MavenProperties() {
 

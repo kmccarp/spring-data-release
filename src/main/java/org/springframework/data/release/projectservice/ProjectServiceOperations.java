@@ -79,9 +79,7 @@ class ProjectServiceOperations {
 		Map<Project, MaintainedVersions> versions = findVersions(trains);
 
 		Streamable<Entry<Project, MaintainedVersions>> stream = Streamable.of(versions.entrySet()) //
-				.filter(entry -> {
-					return entry.getKey() != Projects.BOM && entry.getKey() != Projects.JDBC;
-				});
+				.filter(entry -> entry.getKey() != Projects.BOM && entry.getKey() != Projects.JDBC);
 
 		ExecutionUtils.run(executor, stream, entry -> {
 

@@ -100,7 +100,7 @@ public class ChangelogGenerator {
 
 			StringBuilder content = new StringBuilder();
 
-			content.append((content.length() != 0) ? String.format("%n") : "");
+			content.append(content.length() != 0 ? String.format("%n") : "");
 			content.append("## ").append(section).append(String.format("%n%n"));
 			issues.stream().map(this::getFormattedIssue).forEach(content::append);
 
@@ -122,7 +122,7 @@ public class ChangelogGenerator {
 		if (this.excludeContributors.contains("*")) {
 			return Collections.emptySet();
 		}
-		return issues.stream().filter((issue) -> issue.getPullRequest() != null).map(GitHubReadIssue::getUser)
+		return issues.stream().filter(issue -> issue.getPullRequest() != null).map(GitHubReadIssue::getUser)
 				.filter(this::isIncludedContributor).collect(Collectors.toSet());
 	}
 
@@ -132,7 +132,7 @@ public class ChangelogGenerator {
 
 	private void addContributorsContent(StringBuilder content, Set<GitHubUser> contributors) {
 		content.append(String.format("%n## "));
-		content.append((this.contributorsTitle != null) ? this.contributorsTitle : ":heart: Contributors");
+		content.append(this.contributorsTitle != null ? this.contributorsTitle : ":heart: Contributors");
 		content.append(String.format("%n%nWe'd like to thank all the contributors who worked on this release!%n%n"));
 		contributors.stream().map(this::formatContributors).forEach(content::append);
 	}
