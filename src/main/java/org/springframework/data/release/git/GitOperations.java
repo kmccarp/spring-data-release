@@ -85,7 +85,7 @@ import org.springframework.util.Assert;
 public class GitOperations {
 
 	private enum BranchCheckoutMode {
-		CREATE_ONLY, CREATE_AND_UPDATE;
+		CREATE_ONLY, CREATE_AND_UPDATE
 	}
 
 	GitServer server = new GitServer();
@@ -1105,7 +1105,7 @@ public class GitOperations {
 	/**
 	 * {@link CredentialsProvider} for GPG Keys used with JGit Commit Signing.
 	 */
-	private static class GpgPassphraseProvider extends CredentialsProvider {
+	private static final class GpgPassphraseProvider extends CredentialsProvider {
 
 		private final Gpg gpg;
 

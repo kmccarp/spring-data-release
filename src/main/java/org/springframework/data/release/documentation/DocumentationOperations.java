@@ -102,11 +102,7 @@ class DocumentationOperations {
 			if (status.is3xxRedirection() && flags.contains(ReportFlag.REDIRECT)) {
 				return true;
 			}
-			if (status.is4xxClientError() && flags.contains(ReportFlag.ERROR)) {
-				return true;
-			}
-
-			return false;
+			return status.is4xxClientError() && flags.contains(ReportFlag.ERROR);
 		}
 	}
 

@@ -29,8 +29,24 @@ import org.springframework.data.release.model.Train.DocumentationFormat;
 public class ReleaseTrains {
 
 	public static final List<Train> TRAINS;
-	public static final Train CODD, DIJKSTRA, EVANS, FOWLER, GOSLING, HOPPER, INGALLS, KAY, LOVELACE, MOORE, NEUMANN,
-			OCKHAM, PASCAL, Q, RAJ, TURING, ULLMAN, VAUGHAN;
+	public static final Train CODD;
+	public static final Train DIJKSTRA;
+	public static final Train EVANS;
+	public static final Train FOWLER;
+	public static final Train GOSLING;
+	public static final Train HOPPER;
+	public static final Train INGALLS;
+	public static final Train KAY;
+	public static final Train LOVELACE;
+	public static final Train MOORE;
+	public static final Train NEUMANN;
+	public static final Train OCKHAM;
+	public static final Train PASCAL;
+	public static final Train Q;
+	public static final Train RAJ;
+	public static final Train TURING;
+	public static final Train ULLMAN;
+	public static final Train VAUGHAN;
 
 	static {
 

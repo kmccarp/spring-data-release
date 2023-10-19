@@ -31,7 +31,7 @@ import org.springframework.util.ObjectUtils;
  * @author Oliver Gierke
  * @author Mark Paluch
  */
-public class ArtifactVersion implements Comparable<ArtifactVersion> {
+public final class ArtifactVersion implements Comparable<ArtifactVersion> {
 
 	private static final Pattern PATTERN = Pattern
 			.compile("(\\d+)\\.(\\d+)(\\.\\d+)?(\\.((SR\\d+)|(RC\\d+)|(M\\d+)|(BUILD-SNAPSHOT)|(RELEASE)))");
@@ -168,7 +168,7 @@ public class ArtifactVersion implements Comparable<ArtifactVersion> {
 	 * @return
 	 */
 	public boolean isReleaseVersion() {
-		return suffix.equals("") || suffix.equals(RELEASE_SUFFIX);
+		return "".equals(suffix) || suffix.equals(RELEASE_SUFFIX);
 	}
 
 	/**

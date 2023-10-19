@@ -35,7 +35,8 @@ import org.springframework.stereotype.Component;
 @ConfigurationProperties(prefix = "io")
 class IoProperties {
 
-	private File workDir, logs;
+	private File workDir;
+	private File logs;
 
 	public void setWorkDir(String workDir) {
 

@@ -39,7 +39,7 @@ import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
  *
  * @author Mark Paluch
  */
-public class HttpComponentsClientHttpRequestFactoryBuilder {
+public final class HttpComponentsClientHttpRequestFactoryBuilder {
 
 	private final CredentialsProvider credsProvider = new BasicCredentialsProvider();
 	private final AuthCache authCache = new BasicAuthCache();

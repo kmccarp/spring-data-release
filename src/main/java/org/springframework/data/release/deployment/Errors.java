@@ -47,7 +47,8 @@ public class Errors {
 	@Data
 	static class Message {
 
-		private String level, message;
+		private String level;
+		private String message;
 
 		public String toString() {
 			return String.format("%s - %s", level, message);

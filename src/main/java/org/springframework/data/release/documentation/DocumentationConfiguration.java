@@ -42,10 +42,7 @@ public class DocumentationConfiguration {
 	@Bean
 	WebClient documentationWebClient(ReactorResourceFactory resourceFactory) {
 
-		return WebClient.builder().clientConnector(new ReactorClientHttpConnector(resourceFactory, httpClient -> {
-
-			return httpClient.responseTimeout(Duration.ofSeconds(5));
-		})).build();
+		return WebClient.builder().clientConnector(new ReactorClientHttpConnector(resourceFactory, httpClient -> httpClient.responseTimeout(Duration.ofSeconds(5)))).build();
 	}
 
 }

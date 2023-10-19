@@ -39,8 +39,25 @@ import org.jgrapht.traverse.TopologicalOrderIterator;
  */
 public class Projects {
 
-	public static final Project BOM, COMMONS, BUILD, REST, JDBC, RELATIONAL, JPA, MONGO_DB, NEO4J, SOLR, COUCHBASE,
-			CASSANDRA, ELASTICSEARCH, R2DBC, REDIS, KEY_VALUE, ENVERS, LDAP, GEODE;
+	public static final Project BOM;
+	public static final Project COMMONS;
+	public static final Project BUILD;
+	public static final Project REST;
+	public static final Project JDBC;
+	public static final Project RELATIONAL;
+	public static final Project JPA;
+	public static final Project MONGO_DB;
+	public static final Project NEO4J;
+	public static final Project SOLR;
+	public static final Project COUCHBASE;
+	public static final Project CASSANDRA;
+	public static final Project ELASTICSEARCH;
+	public static final Project R2DBC;
+	public static final Project REDIS;
+	public static final Project KEY_VALUE;
+	public static final Project ENVERS;
+	public static final Project LDAP;
+	public static final Project GEODE;
 	public static final List<Project> PROJECTS;
 	public static final Project SMOKE_TESTS = new Project("SMOKE_TESTS", "Smoke Tests", Tracker.GITHUB);
 
