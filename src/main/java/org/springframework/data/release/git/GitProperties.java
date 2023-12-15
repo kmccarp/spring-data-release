@@ -19,8 +19,7 @@ import lombok.AccessLevel;
 import lombok.Data;
 import lombok.Getter;
 
-import javax.annotation.PostConstruct;
-
+import jakarta.annotation.PostConstruct;
 import org.eclipse.jgit.transport.CredentialsProvider;
 import org.eclipse.jgit.transport.UsernamePasswordCredentialsProvider;
 import org.springframework.boot.context.properties.ConfigurationProperties;

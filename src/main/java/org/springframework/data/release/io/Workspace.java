@@ -38,8 +38,7 @@ import java.util.Scanner;
 import java.util.function.Predicate;
 import java.util.stream.Stream;
 
-import javax.annotation.PostConstruct;
-
+import jakarta.annotation.PostConstruct;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.ResourcePatternResolver;
 import org.springframework.data.release.model.Project;
@@ -190,7 +189,7 @@ public class Workspace {
 	public Stream<File> getFiles(String pattern, Project project) {
 
 		File projectDirectory = getProjectDirectory(project);
-		String patternToLookup = String.format("file:%s/%s", projectDirectory.getAbsolutePath(), pattern);
+		String patternToLookup = "file:%s/%s".formatted(projectDirectory.getAbsolutePath(), pattern);
 
 		try {
 			return Arrays.stream(resolver.getResources(patternToLookup)).map(wrap(Resource::getFile));

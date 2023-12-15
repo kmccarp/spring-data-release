@@ -56,10 +56,10 @@ public class DocumentationMetadata {
 		}
 
 		if (Projects.BUILD.equals(project)) { // Report Commons Docs for Spring Data Build
-			return String.format(JAVADOC, getProjectName(Projects.COMMONS), getDocumentationVersion());
+			return JAVADOC.formatted(getProjectName(Projects.COMMONS), getDocumentationVersion());
 		}
 
-		return String.format(JAVADOC, project == Projects.R2DBC ? "r2dbc" : getProjectName(project),
+		return JAVADOC.formatted(project == Projects.R2DBC ? "r2dbc" : getProjectName(project),
 				getDocumentationVersion());
 	}
 
@@ -101,10 +101,10 @@ public class DocumentationMetadata {
 				return "";
 			}
 
-			return String.format(DOCS, getProjectName(project), getDocumentationVersion());
+			return DOCS.formatted(getProjectName(project), getDocumentationVersion());
 		}
 
-		return String.format(ANTORA_BASE, getProjectName(project));
+		return ANTORA_BASE.formatted(getProjectName(project));
 	}
 
 	public String getVersionOrTrainName(Train train) {

@@ -25,7 +25,7 @@ import org.springframework.shell.core.Completion;
 import org.springframework.shell.core.Converter;
 import org.springframework.shell.core.MethodTarget;
 import org.springframework.stereotype.Component;
-import org.springframework.util.StringUtils;
+import org.springframework.util.ObjectUtils;
 
 /**
  * @author Oliver Gierke
@@ -52,7 +52,7 @@ public class TrainConverter implements Converter<Train> {
 	@Override
 	public Train convertFromText(String value, Class<?> targetType, String optionContext) {
 
-		if (StringUtils.isEmpty(value)) {
+		if (ObjectUtils.isEmpty(value)) {
 			return null;
 		}
 

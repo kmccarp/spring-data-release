@@ -199,7 +199,7 @@ class CommandLine {
 		}
 
 		public Argument withQuotedValue(Object value) {
-			return new Argument(name, ArgumentValue.of(value, it -> String.format("\"%s\"", it.toString())));
+			return new Argument(name, ArgumentValue.of(value, it -> "\"%s\"".formatted(it.toString())));
 		}
 
 		public Argument withValue(Masked masked) {
@@ -222,7 +222,7 @@ class CommandLine {
 		private String toNameValuePair(Optional<String> source) {
 
 			return source//
-					.map(it -> String.format("%s=%s", name, it))//
+					.map(it -> "%s=%s".formatted(name, it))//
 					.orElse(name);
 		}
 

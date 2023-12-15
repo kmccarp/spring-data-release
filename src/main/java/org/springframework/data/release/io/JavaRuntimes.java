@@ -96,7 +96,7 @@ public class JavaRuntimes {
 		List<JdkInstallation> jdks = JDKS.get();
 
 		return jdks.stream().filter(filter).findFirst()
-				.orElseThrow(() -> new NoSuchJavaRuntimeException(String.format("%s%nAvailable JDK: %s", message.get(), jdks),
+				.orElseThrow(() -> new NoSuchJavaRuntimeException("%s%nAvailable JDK: %s".formatted(message.get(), jdks),
 						jdks, runtimeName));
 	}
 
@@ -401,8 +401,11 @@ public class JavaRuntimes {
 		@Override
 		protected FailureAnalysis analyze(Throwable rootFailure, NoSuchJavaRuntimeException cause) {
 
-			String action = "  Make sure to install %s using your platform installation method or SDKman.%n%n"
-					+ "  Detected Java Runtimes are: %n" + "%s";
+			String action = """
+					  Make sure to install %s using your platform installation method or SDKman.%n%n\
+					  Detected Java Runtimes are: %n\
+					%s\
+					""";
 
 			StringBuilder detectedRuntimes = new StringBuilder();
 
@@ -412,7 +415,7 @@ public class JavaRuntimes {
 			}
 
 			return new FailureAnalysis("⚠️ A required JDK was not found: " + cause.getRequiredJdk(),
-					String.format(action, cause.getRequiredJdk(), detectedRuntimes), cause);
+					action.formatted(cause.getRequiredJdk(), detectedRuntimes), cause);
 		}
 	}
 

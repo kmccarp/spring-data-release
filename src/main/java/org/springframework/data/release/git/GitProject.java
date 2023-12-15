@@ -44,7 +44,7 @@ public class GitProject {
 	 * @return
 	 */
 	public String getRepositoryName() {
-		return String.format("%s-%s", PROJECT_PREFIX,
+		return "%s-%s".formatted(PROJECT_PREFIX,
 				project == Projects.JDBC ? "relational" : project.getName().toLowerCase());
 	}
 

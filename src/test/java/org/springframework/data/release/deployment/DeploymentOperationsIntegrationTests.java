@@ -41,7 +41,7 @@ class DeploymentOperationsIntegrationTests extends AbstractIntegrationTests {
 	@Autowired ArtifactoryClient client;
 
 	@Test
-	void testname() {
+	void name() {
 
 		Train train = ReleaseTrains.OCKHAM;
 		ModuleIteration buildModule = train.getModuleIteration(Projects.BOM, Iteration.M1);

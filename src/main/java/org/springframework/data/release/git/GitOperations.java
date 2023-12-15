@@ -173,7 +173,7 @@ public class GitOperations {
 		ModuleIteration gaIteration = train.getModuleIteration(project, Iteration.GA);
 		Optional<Tag> gaTag = findTagFor(project, ArtifactVersion.of(gaIteration));
 
-		if (!gaTag.isPresent()) {
+		if (gaTag.isEmpty()) {
 			logger.log(project, "Checking out main branch as no GA release tag could be found!");
 		}
 
@@ -211,7 +211,7 @@ public class GitOperations {
 			Project project = module.getProject();
 			ArtifactVersion artifactVersion = ArtifactVersion.of(module);
 			Tag tag = findTagFor(project, artifactVersion).orElseThrow(() -> new IllegalStateException(
-					String.format("No tag found for version %s of project %s, aborting.", artifactVersion, project)));
+					"No tag found for version %s of project %s, aborting.".formatted(artifactVersion, project)));
 
 			doWithGit(project, git -> {
 
@@ -408,7 +408,7 @@ public class GitOperations {
 		Assert.notNull(project, "Project must not be null!");
 
 		IssueTracker tracker = issueTracker.getRequiredPluginFor(project,
-				() -> String.format("No issue tracker found for project %s!", project));
+				() -> "No issue tracker found for project %s!".formatted(project));
 
 		return doWithGit(project, git -> {
 
@@ -502,7 +502,7 @@ public class GitOperations {
 
 			Optional<Tag> fromTag = tags.filter(iteration.getTrain()).findTag(iteration.getIteration());
 
-			if (!fromTag.isPresent()) {
+			if (fromTag.isEmpty()) {
 
 				// fall back to main
 				return repo.parseCommit(repo.resolve(Branch.MAIN.toString()));
@@ -648,7 +648,7 @@ public class GitOperations {
 
 		Project project = module.getProject();
 		IssueTracker tracker = issueTracker.getRequiredPluginFor(project,
-				() -> String.format("No issue tracker found for project %s!", project));
+				() -> "No issue tracker found for project %s!".formatted(project));
 		Ticket ticket = tracker.getReleaseTicketFor(module);
 
 		commit(module, ticket, summary, details, true);
@@ -669,7 +669,7 @@ public class GitOperations {
 
 		Project project = module.getProject();
 		IssueTracker tracker = issueTracker.getRequiredPluginFor(project,
-				() -> String.format("No issue tracker found for project %s!", project));
+				() -> "No issue tracker found for project %s!".formatted(project));
 		Ticket ticket = tracker.getReleaseTicketFor(module);
 
 		commit(module, ticket, summary, details, all);
@@ -858,7 +858,7 @@ public class GitOperations {
 
 			Optional<Tag> tag = findTagFor(project, artifactVersion);
 
-			if (!tag.isPresent()) {
+			if (tag.isEmpty()) {
 				logger.log(module, "No tag %s found project %s, skipping.", artifactVersion, project);
 				return;
 			}
@@ -951,8 +951,8 @@ public class GitOperations {
 
 		Predicate<RevCommit> trigger = calculateFilter(module, summary);
 
-		return findCommit(module, summary).orElseThrow(() -> new IllegalStateException(String
-				.format("Did not find a commit with summary starting with '%s' for project %s", module.getProject(), trigger)));
+		return findCommit(module, summary).orElseThrow(() -> new IllegalStateException("Did not find a commit with summary starting with '%s' for project %s"
+				.formatted(module.getProject(), trigger)));
 	}
 
 	private Optional<ObjectId> findCommit(ModuleIteration module, String summary) {
@@ -978,7 +978,7 @@ public class GitOperations {
 
 		Project project = module.getProject();
 		Ticket releaseTicket = issueTracker
-				.getRequiredPluginFor(project, () -> String.format("No issue tracker found for project %s!", project))//
+				.getRequiredPluginFor(project, () -> "No issue tracker found for project %s!".formatted(project))//
 				.getReleaseTicketFor(module);
 
 		return revCommit -> {
@@ -1060,7 +1060,7 @@ public class GitOperations {
 	}
 
 	private static String expandSummary(String summary, ModuleIteration module, TrainIteration iteration) {
-		return summary.contains("%s") ? String.format(summary, module.getMediumVersionString()) : summary;
+		return summary.contains("%s") ? summary.formatted(module.getMediumVersionString()) : summary;
 	}
 
 	private <T> T doWithGit(Project project, GitCallback<T> callback) {
@@ -1147,8 +1147,8 @@ public class GitOperations {
 			}
 
 			for (CredentialItem item : items) {
-				if (item instanceof CharArrayType) {
-					((CharArrayType) item).setValueNoCopy(gpg.getPassphrase().toString().toCharArray());
+				if (item instanceof CharArrayType type) {
+					type.setValueNoCopy(gpg.getPassphrase().toString().toCharArray());
 
 					return true;
 				}

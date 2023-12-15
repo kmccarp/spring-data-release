@@ -31,7 +31,7 @@ import org.springframework.data.release.model.Version;
 class BranchUnitTests {
 
 	@Test
-	void testname() {
+	void name() {
 
 		IterationVersion iterationVersion = new SimpleIterationVersion(Version.of(1, 4), Iteration.RC1);
 		assertThat(Branch.from(iterationVersion).toString()).isEqualTo("main");

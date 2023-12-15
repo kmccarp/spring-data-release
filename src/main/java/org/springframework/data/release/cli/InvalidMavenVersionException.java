@@ -31,7 +31,7 @@ class InvalidMavenVersionException extends IllegalStateException {
 	private final File home;
 
 	public InvalidMavenVersionException(String expectedVersion, String installedVersion, File home) {
-		super(String.format("Invalid Maven version: Expected %s, found version %s", expectedVersion, installedVersion));
+		super("Invalid Maven version: Expected %s, found version %s".formatted(expectedVersion, installedVersion));
 		this.expectedVersion = expectedVersion;
 		this.actualVersion = installedVersion;
 		this.home = home;

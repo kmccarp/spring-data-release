@@ -206,6 +206,6 @@ public class IssueTrackerCommands extends TimedCommand {
 	private IssueTracker getTrackerFor(ModuleIteration moduleIteration) {
 
 		return tracker.getRequiredPluginFor(moduleIteration.getProject(),
-				() -> String.format("No issue tracker found for module %s!", moduleIteration));
+				() -> "No issue tracker found for module %s!".formatted(moduleIteration));
 	}
 }

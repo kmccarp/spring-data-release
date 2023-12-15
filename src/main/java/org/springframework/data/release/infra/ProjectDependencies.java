@@ -113,7 +113,7 @@ public class ProjectDependencies implements Streamable<ProjectDependencies.Proje
 	public static ProjectDependencies get(Project project) {
 
 		if (!containsProject(project)) {
-			throw new IllegalArgumentException(String.format("No dependency configuration for %s!", project));
+			throw new IllegalArgumentException("No dependency configuration for %s!".formatted(project));
 		}
 
 		return new ProjectDependencies(config.get(project));

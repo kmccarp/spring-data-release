@@ -78,7 +78,7 @@ public class TrainIteration implements Streamable<ModuleIteration> {
 		if (getTrain().usesCalver()) {
 
 			if (getIteration().isMilestone() || getIteration().isReleaseCandidate()) {
-				return String.format("%s-%s", getCalver().toMajorMinorBugfix(), iteration);
+				return "%s-%s".formatted(getCalver().toMajorMinorBugfix(), iteration);
 			}
 
 			return getCalver().toMajorMinorBugfix();

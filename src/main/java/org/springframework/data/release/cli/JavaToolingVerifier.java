@@ -19,8 +19,7 @@ import lombok.RequiredArgsConstructor;
 
 import java.util.Properties;
 
-import javax.annotation.PostConstruct;
-
+import jakarta.annotation.PostConstruct;
 import org.springframework.boot.diagnostics.AbstractFailureAnalyzer;
 import org.springframework.boot.diagnostics.FailureAnalysis;
 import org.springframework.data.release.build.MavenProperties;

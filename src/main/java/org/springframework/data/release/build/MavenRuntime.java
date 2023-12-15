@@ -170,8 +170,8 @@ public class MavenRuntime {
 			InvocationResult result = doWithMaven(invoker, mvn -> {
 
 				mvn.setBaseDirectory(workspace.getProjectDirectory(project));
-				mavenLogger.info(String.format("Java Home: %s", jdk));
-				mavenLogger.info(String.format("Executing: mvn %s", arguments));
+				mavenLogger.info("Java Home: %s".formatted(jdk));
+				mavenLogger.info("Executing: mvn %s".formatted(arguments));
 
 				CommandLine disabledGradleBuildCache = arguments.and(arg("gradle.cache.local.enabled=false")).and(arg("gradle.cache.remote.enabled=false"));
 
@@ -190,8 +190,8 @@ public class MavenRuntime {
 
 			return invocationResult;
 		} catch (Exception e) {
-			if (e instanceof RuntimeException) {
-				throw (RuntimeException) e;
+			if (e instanceof RuntimeException exception) {
+				throw exception;
 			}
 			throw new RuntimeException(e);
 		}

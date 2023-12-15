@@ -100,8 +100,8 @@ public class ChangelogGenerator {
 
 			StringBuilder content = new StringBuilder();
 
-			content.append((content.length() != 0) ? String.format("%n") : "");
-			content.append("## ").append(section).append(String.format("%n%n"));
+			content.append((content.length() != 0) ? "%n".formatted() : "");
+			content.append("## ").append(section);
 			issues.stream().map(this::getFormattedIssue).forEach(content::append);
 
 			result.append(sectionContentPostProcessor.apply(section, content.toString()));
@@ -111,7 +111,7 @@ public class ChangelogGenerator {
 	private String getFormattedIssue(GitHubReadIssue issue) {
 		String title = issue.getTitle();
 		title = ghUserMentionPattern.matcher(title).replaceAll("$1`$2`");
-		return String.format("- %s %s%n", title, getLinkToIssue(issue));
+		return "- %s %s%n".formatted(title, getLinkToIssue(issue));
 	}
 
 	private String getLinkToIssue(GitHubIssue issue) {
@@ -131,9 +131,7 @@ public class ChangelogGenerator {
 	}
 
 	private void addContributorsContent(StringBuilder content, Set<GitHubUser> contributors) {
-		content.append(String.format("%n## "));
 		content.append((this.contributorsTitle != null) ? this.contributorsTitle : ":heart: Contributors");
-		content.append(String.format("%n%nWe'd like to thank all the contributors who worked on this release!%n%n"));
 		contributors.stream().map(this::formatContributors).forEach(content::append);
 	}
 

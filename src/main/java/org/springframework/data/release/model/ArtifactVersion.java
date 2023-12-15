@@ -45,7 +45,7 @@ public class ArtifactVersion implements Comparable<ArtifactVersion> {
 	private static final String SNAPSHOT_SUFFIX = "BUILD-SNAPSHOT";
 	private static final String SNAPSHOT_MODIFIER = "SNAPSHOT";
 
-	private static final String VALID_SUFFIX = String.format("%s|%s|%s|%s|-%s|-%s|-%s", RELEASE_SUFFIX, MILESTONE_SUFFIX,
+	private static final String VALID_SUFFIX = "%s|%s|%s|%s|-%s|-%s|-%s".formatted(RELEASE_SUFFIX, MILESTONE_SUFFIX,
 			RC_SUFFIX, SNAPSHOT_SUFFIX, RELEASE_SUFFIX, MILESTONE_SUFFIX, SNAPSHOT_MODIFIER);
 
 	private final @Getter Version version;
@@ -95,7 +95,7 @@ public class ArtifactVersion implements Comparable<ArtifactVersion> {
 			Version version = Version.parse(source.substring(0, suffixStart));
 			String suffix = source.substring(suffixStart + 1);
 
-			Assert.isTrue(suffix.matches(VALID_SUFFIX), String.format("Invalid version suffix: %s!", source));
+			Assert.isTrue(suffix.matches(VALID_SUFFIX), "Invalid version suffix: %s!".formatted(source));
 
 			return new ArtifactVersion(version, false, suffix);
 		}
@@ -111,7 +111,7 @@ public class ArtifactVersion implements Comparable<ArtifactVersion> {
 		}
 
 		throw new IllegalArgumentException(
-				String.format("Version %s does not match <version>.<modifier> nor <version>-<modifier> pattern", source));
+				"Version %s does not match <version>.<modifier> nor <version>-<modifier> pattern".formatted(source));
 	}
 
 	/**
@@ -296,13 +296,13 @@ public class ArtifactVersion implements Comparable<ArtifactVersion> {
 		if (modifierFormat) {
 
 			if (isSnapshotVersion() || isMilestoneVersion() || isReleaseCandidateVersion()) {
-				return String.format("%s-%s", version.toMajorMinorBugfix(), suffix);
+				return "%s-%s".formatted(version.toMajorMinorBugfix(), suffix);
 			}
 
 			return version.toMajorMinorBugfix();
 		}
 
-		return String.format("%s.%s", version.toMajorMinorBugfix(), suffix);
+		return "%s.%s".formatted(version.toMajorMinorBugfix(), suffix);
 	}
 
 	/**
@@ -319,7 +319,7 @@ public class ArtifactVersion implements Comparable<ArtifactVersion> {
 	}
 
 	public String getGeneration() {
-		return String.format("%s.%s.x", version.getMajor(), version.getMinor());
+		return "%s.%s.x".formatted(version.getMajor(), version.getMinor());
 	}
 
 	@Override

@@ -44,7 +44,7 @@ class ExecutorConfiguration {
 
 		int processors = Runtime.getRuntime().availableProcessors();
 		int threadCount = Math.max(2, processors - 4);
-		log.info(String.format("Setting up Executor Service with %d Threads", threadCount));
+		log.info("Setting up Executor Service with %d Threads".formatted(threadCount));
 
 		ThreadPoolExecutorFactoryBean scheduler = new ThreadPoolExecutorFactoryBean();
 		scheduler.setCorePoolSize(threadCount);

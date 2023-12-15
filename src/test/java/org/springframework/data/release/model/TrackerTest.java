@@ -29,7 +29,7 @@ import org.junit.jupiter.api.Test;
 class TrackerTest {
 
 	@Test
-	void testVersionBranch() throws Exception {
+	void versionBranch() throws Exception {
 
 		Pattern pattern = Pattern.compile(Tracker.GITHUB.getTicketPattern());
 		Matcher matcher = pattern.matcher("1.2.x");

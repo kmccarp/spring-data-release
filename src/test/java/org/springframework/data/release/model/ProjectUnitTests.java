@@ -28,7 +28,7 @@ import org.junit.jupiter.api.Test;
 class ProjectUnitTests {
 
 	@Test
-	void testname() {
+	void name() {
 
 		List<Project> projects = new ArrayList<>(Projects.PROJECTS);
 		// Collections.reverse(projects);

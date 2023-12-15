@@ -251,7 +251,7 @@ public class Train implements Streamable<Module> {
 	public TrainIteration getIteration(Iteration iteration) {
 
 		Assert.isTrue(iterations.contains(iteration),
-				String.format("Iteration %s is not a valid one for the configured iterations %s!", iteration, iterations));
+				"Iteration %s is not a valid one for the configured iterations %s!".formatted(iteration, iterations));
 
 		return doGetTrainIteration(iteration);
 	}
@@ -296,7 +296,7 @@ public class Train implements Streamable<Module> {
 			return iterations.stream().//
 					filter(iteration -> iteration.getName().equalsIgnoreCase(name)).//
 					findFirst()
-					.orElseThrow(() -> new IllegalArgumentException(String.format("No iteration found with name %s!", name)));
+					.orElseThrow(() -> new IllegalArgumentException("No iteration found with name %s!".formatted(name)));
 		}
 
 		Iteration getPreviousIteration(Iteration iteration) {
@@ -304,7 +304,7 @@ public class Train implements Streamable<Module> {
 			return iterations.stream().//
 					filter(candidate -> candidate.isNext(iteration)).//
 					findFirst().orElseThrow(() -> new IllegalArgumentException(
-							String.format("Could not find previous iteration for %s!", iteration)));
+					"Could not find previous iteration for %s!".formatted(iteration)));
 		}
 
 		boolean contains(Iteration iteration) {

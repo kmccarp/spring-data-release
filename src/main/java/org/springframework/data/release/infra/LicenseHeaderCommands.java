@@ -98,7 +98,7 @@ public class LicenseHeaderCommands extends TimedCommand {
 
 		ExecutionUtils.run(executor, modules, module -> {
 
-			String summary = String.format("Extend license header copyright years to %d", year);
+			String summary = "Extend license header copyright years to %d".formatted(year);
 
 			int updated = replaceInFiles(module.getProject(), content -> {
 
@@ -164,7 +164,7 @@ public class LicenseHeaderCommands extends TimedCommand {
 					modified++;
 				}
 			} catch (IOException e) {
-				throw new IllegalStateException(String.format("Cannot modify contents of %s", file), e);
+				throw new IllegalStateException("Cannot modify contents of %s".formatted(file), e);
 			}
 		}
 

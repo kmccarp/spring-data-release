@@ -9,7 +9,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.7.6</version>
+		<version>3.2.0</version>
 	</parent>
 
 	<properties>
@@ -75,6 +75,11 @@
 			<groupId>org.xmlbeam</groupId>
 			<artifactId>xmlprojector</artifactId>
 			<version>1.4.23</version>
+		</dependency>
+		<dependency>
+			<groupId>org.glassfish.jaxb</groupId>
+			<artifactId>jaxb-runtime</artifactId>
+			<scope>provided</scope>
 		</dependency>
 
 		<dependency>
@@ -161,13 +166,7 @@
 		<dependency>
 			<groupId>com.github.tomakehurst</groupId>
 			<artifactId>wiremock</artifactId>
-			<version>2.27.2</version>
-			<scope>test</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>javax.servlet-api</artifactId>
+			<version>2.35.1</version>
 			<scope>test</scope>
 		</dependency>
 

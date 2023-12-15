@@ -37,8 +37,7 @@ import java.util.stream.Collector;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import javax.annotation.PreDestroy;
-
+import jakarta.annotation.PreDestroy;
 import org.apache.commons.io.IOUtils;
 
 import org.springframework.data.release.infra.InfrastructureOperations;
@@ -162,7 +161,7 @@ class BuildExecutor {
 
 		CompletableFuture<T> result = new CompletableFuture<>();
 		Supplier<IllegalStateException> exception = () -> new IllegalStateException(
-				String.format("No build system plugin found for project %s!", module.getProject()));
+				"No build system plugin found for project %s!".formatted(module.getProject()));
 
 		BuildSystem buildSystem = buildSystems.getPluginFor(module.getProject(), exception)
 				.withJavaVersion(detectJavaVersion(module.getProject()));
@@ -188,7 +187,7 @@ class BuildExecutor {
 		File ciProperties = workspace.getFile(InfrastructureOperations.CI_PROPERTIES, project);
 
 		if (!ciProperties.exists()) {
-			throw new IllegalStateException(String.format("Cannot find %s for project %s", ciProperties, project));
+			throw new IllegalStateException("Cannot find %s for project %s".formatted(ciProperties, project));
 		}
 
 		Properties properties = new Properties();

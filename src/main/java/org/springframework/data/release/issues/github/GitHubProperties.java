@@ -22,8 +22,7 @@ import lombok.RequiredArgsConstructor;
 
 import java.util.List;
 
-import javax.annotation.PostConstruct;
-
+import jakarta.annotation.PostConstruct;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.data.release.git.GitProperties;
 import org.springframework.data.release.utils.HttpBasicCredentials;

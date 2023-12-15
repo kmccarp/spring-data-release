@@ -50,7 +50,7 @@ public class Logger {
 	}
 
 	public void log(String context, Object template, Object... args) {
-		LOGGER.info(String.format(PREFIX_TEMPLATE, context, String.format(template.toString(), args)));
+		LOGGER.info(PREFIX_TEMPLATE.formatted(context, template.toString().formatted(args)));
 	}
 
 	public void warn(ModuleIteration module, Object template, Object... args) {
@@ -70,6 +70,6 @@ public class Logger {
 	}
 
 	public void warn(String context, Object template, Object... args) {
-		LOGGER.warning(String.format(PREFIX_TEMPLATE, context, String.format(template.toString(), args)));
+		LOGGER.warning(PREFIX_TEMPLATE.formatted(context, template.toString().formatted(args)));
 	}
 }

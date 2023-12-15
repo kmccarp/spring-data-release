@@ -31,7 +31,7 @@ import org.springframework.data.release.model.ReleaseTrains;
 class ArtifactUnitTests {
 
 	@Test
-	void testname() {
+	void name() {
 
 		MavenArtifact artifact = new MavenArtifact(ReleaseTrains.DIJKSTRA.getModuleIteration(Projects.JPA, Iteration.M1));
 

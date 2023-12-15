@@ -588,12 +588,12 @@ public class GitHub extends GitHubSupport implements IssueTracker {
 				String participatingModules = createParticipatingModules(iteration);
 
 				createOrUpdateRelease(module,
-						String.format("## :shipit: Participating Modules%n%n%s%n%s%n", participatingModules, releaseBody));
+						"## :shipit: Participating Modules%n%n%s%n%s%n".formatted(participatingModules, releaseBody));
 			} else {
-				createOrUpdateRelease(module, String.format("%s%n", documentationLinks, releaseBody));
+				createOrUpdateRelease(module, "%s%n".formatted(documentationLinks, releaseBody));
 			}
 		} else {
-			createOrUpdateRelease(module, String.format("## :green_book: Links%n%s%n%s%n", documentationLinks, releaseBody));
+			createOrUpdateRelease(module, "## :green_book: Links%n%s%n%s%n".formatted(documentationLinks, releaseBody));
 		}
 
 		logger.log(module, "GitHub Release up to date");
@@ -627,7 +627,7 @@ public class GitHub extends GitHubSupport implements IssueTracker {
 		ResponseEntity<Object> entity = operations.getForEntity("/user", Object.class);
 
 		if (!entity.getStatusCode().is2xxSuccessful()) {
-			throw new IllegalStateException(String.format("Cannot obtain /user. Status: %s", entity.getStatusCode()));
+			throw new IllegalStateException("Cannot obtain /user. Status: %s".formatted(entity.getStatusCode()));
 		}
 
 		logger.log("GitHub", "Authentication verified.");
@@ -665,7 +665,7 @@ public class GitHub extends GitHubSupport implements IssueTracker {
 		ResponseEntity<GitHubWorkflows> entity = operations.exchange(WORKFLOWS, HttpMethod.GET, null, WORKFLOWS_TYPE);
 
 		if (!entity.getStatusCode().is2xxSuccessful()) {
-			throw new IllegalStateException(String.format("Cannot obtain Workflows. Status: %s", entity.getStatusCode()));
+			throw new IllegalStateException("Cannot obtain Workflows. Status: %s".formatted(entity.getStatusCode()));
 		}
 		GitHubWorkflows workflows = entity.getBody();
 		for (GitHubWorkflow workflow : workflows.getWorkflows()) {
@@ -693,13 +693,13 @@ public class GitHub extends GitHubSupport implements IssueTracker {
 		String referenceDocUrl = documentation.getReferenceDocUrl();
 		String apiDocUrl = documentation.getApiDocUrl();
 
-		String reference = String.format("* [%s %s Reference documentation](%s)", module.getProject().getFullName(),
+		String reference = "* [%s %s Reference documentation](%s)".formatted(module.getProject().getFullName(),
 				module.getVersion().toString(), referenceDocUrl);
 
-		String apidoc = String.format("* [%s %s Javadoc](%s)", module.getProject().getFullName(),
+		String apidoc = "* [%s %s Javadoc](%s)".formatted(module.getProject().getFullName(),
 				module.getVersion().toString(), apiDocUrl);
 
-		return String.format("%s%n%s%n", reference, apidoc);
+		return "%s%n%s%n".formatted(reference, apidoc);
 	}
 
 	private void createOrUpdateRelease(ModuleIteration module, String body) {
@@ -768,7 +768,7 @@ public class GitHub extends GitHubSupport implements IssueTracker {
 
 		Optional<Milestone> optionalMilestone = findMilestone(moduleIteration);
 
-		if (ignoreMissingMilestone && !optionalMilestone.isPresent()) {
+		if (ignoreMissingMilestone && optionalMilestone.isEmpty()) {
 			return Stream.empty();
 		}
 

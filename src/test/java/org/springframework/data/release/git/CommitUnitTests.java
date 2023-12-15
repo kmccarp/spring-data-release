@@ -20,7 +20,6 @@ import static org.assertj.core.api.Assertions.*;
 import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
 
 import org.springframework.data.release.issues.Ticket;
 import org.springframework.data.release.issues.TicketStatus;

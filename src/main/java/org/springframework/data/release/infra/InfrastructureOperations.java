@@ -75,7 +75,7 @@ public class InfrastructureOperations extends TimedCommand {
 		File master = workspace.getFile(CI_PROPERTIES, Projects.BUILD);
 
 		if (!master.exists()) {
-			throw new IllegalStateException(String.format("CI Properties file %s does not exist", master));
+			throw new IllegalStateException("CI Properties file %s does not exist".formatted(master));
 		}
 
 		ExecutionUtils.run(executor, iteration, module -> {
@@ -108,7 +108,7 @@ public class InfrastructureOperations extends TimedCommand {
 			File target = workspace.getFile(CI_PROPERTIES, module.getProject());
 
 			if (!target.exists()) {
-				throw new IllegalStateException(String.format("CI Properties file %s does not exist", master));
+				throw new IllegalStateException("CI Properties file %s does not exist".formatted(master));
 			}
 		}
 	}
